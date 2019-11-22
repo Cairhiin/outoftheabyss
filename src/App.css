@@ -1,22 +1,63 @@
-.App {
+body {
+    font-family: 'Abel';
+    background: url('./images/oota.jpg') no-repeat #222;
+    font-size: 17px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Homenaje';
+  color: #8E6C6C;
+}
+
+aside, main {
+  margin: 20px 0;
+}
+
+.authentication {
+  color: #DBC7C7;
+  cursor: pointer;
+}
+
+/* Overriding Bootstrap classes */
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  font-family: 'Abel';
+  background: #5E3232;
+}
+
+.navbar a, .navbar a:visited, .navbar-light .navbar-nav .nav-link {
+  color: #DBC7C7;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-brand:hover {
+  color: #8E6C6C;
+}
+
+.popover-header {
+    min-width: 250px;
+    color: white;
+    font-family: 'Homenaje';
+    font-size: 34px;
+    line-height: 30px;
+}
+
+.popover-header span {
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.popover-content {
+    color: red;
+    font-size: 10px;
+}
+
+/* Utility classes */
+.spinner {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+  margin-top: 20px;
 }

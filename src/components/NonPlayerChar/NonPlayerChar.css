@@ -1,0 +1,85 @@
+.NPC {
+  background: #1C1919;
+  color: #1C1919;
+  margin-bottom: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  animation: 0.5s ease-out 0s 1 forwards slideInFromSide;
+}
+
+.NPC__image {
+  flex: 0 1 5%;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.NPC__image img {
+  width: 40px;
+  height: auto;
+}
+
+.NPC__info {
+  display: flex;
+}
+
+.NPC__info__header {
+  flex: 0 1 95%;
+  display: flex;
+  padding: 1em;
+  animation: 1s ease-out 0s 1 forwards animateText;
+}
+
+.NPC__info__header__name,
+.NPC__info__header__race,
+.NPC__info__header__alignment,
+.NPC__info__header__standing {
+  flex: 0 1 20%;
+}
+
+.NPC__info__header__standing {
+  text-transform: capitalize;
+}
+
+.NPC__info__header__level {
+  flex: 0 1 5%;
+}
+
+.NPC__info__details {
+  padding: 1em;
+  background-color: #2B2525;
+  color: #DBC7C7;
+  animation: 0.75s ease-out 0s 1 forwards expandYdirectionAndFadeIn;
+}
+
+.NPC__info__details__goals,
+.NPC__info__details__quests {
+  margin-top: 1em;
+}
+
+@keyframes expandYdirectionAndFadeIn {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 500px;
+    color: #DBC7C7;
+  }
+}
+
+@keyframes slideInFromSide {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes animateText {
+  0% {
+    color: #1C1919;
+  }
+  100% {
+    color: #DBC7C7;
+  }
+}

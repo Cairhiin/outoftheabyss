@@ -1,0 +1,66 @@
+.display_log {
+    cursor: pointer;
+    margin-bottom: 2rem;
+    background: #1C1919;
+}
+
+.display_log > div:first-child,
+.display_log > div:last-child {
+  padding: 0 1rem;
+}
+
+.display_log__header {
+    position: relative;
+}
+
+.display_log__header__info {
+  margin-left: 75px;
+}
+
+.display_log__header__info__title {
+  font-family: 'Homenaje';
+  font-size: 34px;
+  color: #F7E8E8;
+  padding: 0 15px;
+}
+
+.display_log__header__date {
+  position: absolute;
+  background: #111;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  color: #DBC7C7;
+  height: 75px;
+  padding: 5px;
+  width: 50px;
+}
+
+.display_log__header__info__intro, .display_log__content {
+  color: #DBC7C7;
+  padding: 1em 15px;
+}
+
+.display_log__header__info__intro, .display_log__header__info__title {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.display_log__header span {
+    font-size: 0.6em;
+}
+
+.display_log__header__intro {
+  font-family: 'Abel';
+  font-size: 16px;
+  padding-bottom: 1em;
+}
+
+.display_log__content {
+  font-size: 16px;
+}
+
+.display_log__footer {
+  color: #8E6C6C;
+  font-size: 24px;
+  text-align: right;
+}

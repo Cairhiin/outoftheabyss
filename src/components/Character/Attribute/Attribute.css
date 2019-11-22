@@ -1,0 +1,72 @@
+.display__character__attribute {
+  display: flex;
+}
+
+.display__character__attribute__header {
+  font-family: 'Homenaje';
+  color: #B5A4A4;
+  font-size: 20px;
+  text-transform: uppercase;
+  order: 1;
+  text-align: right;
+  flex: 0 1 75%;
+  background: #2B2525;
+}
+
+
+.display__character__attribute__header div {
+  padding-left: 5px;
+}
+
+.display__character__attribute__header div:first-child {
+  padding-right: 5px;
+  background: #5E3232;
+}
+
+.display__character__attribute__header ul {
+  font-family: 'Abel';
+  font-size: 16px;
+  text-transform: capitalize;
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.display__character__attribute__header ul > li {
+    color: #B5A4A4;
+}
+
+.display__character__attribute__header ul > li:first-child {
+    color: #e7e0e1;
+    text-transform: uppercase;
+}
+
+.display__character__attribute__details {
+  flex: 0 1 25%;
+  background: #0F0E0E;
+  padding-bottom: 5px;
+}
+
+.display__character__attribute__details__attr {
+   font-size: 44px;
+   margin: -10px 0;
+ }
+
+ .display__character__attribute__details__mod {
+    margin: auto;
+    font-size: 24px;
+    height: 35px;
+    width: 35px;
+    border-radius: 35px;
+    background: #3F2424;
+    color: #B5A4A4;
+    margin-bottom: 20px;
+  }
+
+.display__character__attribute__details__attr, .display__character__attribute__details__mod {
+  text-align: center;
+}
+
+.bigger-font {
+    font-size: 1.2em;
+}

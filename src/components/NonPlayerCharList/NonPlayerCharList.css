@@ -1,0 +1,30 @@
+.NonPlayerCharList__header {
+  display: flex;
+  color: white;
+}
+
+.NonPlayerCharList__header span {
+  color: #DBC7C7;
+}
+
+.NonPlayerCharList__header__image {
+  flex: 0 1 5%;
+  margin: 0 5px;
+}
+
+.NonPlayerCharList__header__info {
+  flex: 0 1 95%;
+  display: flex;
+  padding: 0 1em;
+}
+
+.NonPlayerCharList__header__info__level {
+  flex: 0 1 5%;
+}
+
+.NonPlayerCharList__header__info__name,
+.NonPlayerCharList__header__info__race,
+.NonPlayerCharList__header__info__alignment,
+.NonPlayerCharList__header__info__standing {
+  flex: 0 1 20%;
+}

@@ -1,0 +1,30 @@
+#login-form {
+  margin-top: 1em;
+  padding: 1em;
+  background-color: #2B2525;
+  color: #DBC7C7;
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
+  border-radius: 8px;
+}
+
+#login-form input {
+  background: #483C46;
+  border: #483C46;
+  color: white;
+}
+
+#login-form .alert-danger {
+  margin-top: 1em;
+}
+
+#login-form .custom-control-input:checked~.custom-control-label::before {
+  color: white;
+  background: #483C46;
+  border-color: #483C46;
+}
+
+#login-form .custom-switch .custom-control-input:checked~.custom-control-label::after {
+  background: white;
+}

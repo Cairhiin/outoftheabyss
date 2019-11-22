@@ -1,0 +1,110 @@
+#display__character {
+  display: flex;
+  justify-content: flex-start;
+  color: #DBC7C7;
+  background: #1C1919;
+}
+
+.display__character__attributes {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 27%;
+}
+
+.display__character__info {
+  flex: 0 1 73%;
+}
+
+.display__character__info__header {
+  padding: 0 5px 5px 5px;
+  background: #0F0E0E;
+  text-align: center;
+  height: 106px;
+}
+
+.display__character__info span {
+  font-size: 0.7em;
+  color: #B5A4A4;
+}
+
+.display__character__info__details {
+  display: flex;
+  padding-right: 10px;
+}
+
+.display__character__info__details > div {
+  flex: 0 1 33%;
+  text-align: center;
+}
+
+.display__character__info__details span {
+  color: #B5A4A4;
+  font-size: 0.8em;
+}
+
+.display__character__details__header,
+.display__character__details__categories {
+  display: flex;
+  font-size: 15px;
+}
+
+.display__character__details__header {
+  background: #5E3232;
+  height: 30px;
+  line-height: 30px;
+}
+
+.display__character__details__categories {
+  font-size: 44px;
+  color: #e7e0e1;
+  background: #0F0E0E;
+  height: 128px;
+}
+
+.display__character__details__header > div,
+.display__character__details__categories > div {
+  flex: 0 1 33%;
+  text-align: center;
+}
+
+.display__character__details__categories > div {
+  margin: auto;
+}
+
+.display__character__info__attack__header {
+  background: #5E3232;
+  padding: 0;
+  margin: 0;
+  height: 30px;
+  line-height: 20px;
+  display: flex;
+}
+
+.display__character__info__attack__details {
+  display: flex;
+}
+
+.display__character__info__attack__header div,
+.display__character__info__attack__details div {
+  padding: 0 10px;
+  flex: 0 1 15%;
+  padding: 5px 20px;
+}
+
+.display__character__info__attack__header div:first-child,
+.display__character__info__attack__details div:first-child {
+  flex: 0 1 40%;
+}
+
+.display__character__info__attack__header div:last-child,
+.display__character__info__attack__details div:last-child {
+  flex: 0 1 40%;
+}
+
+.darker_bg {
+  background: #0F0E0E;
+}
+
+.lighter_bg {
+  background: #222;
+}

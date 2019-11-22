@@ -1,3 +1,6 @@
+Single page website for my D&D campaign. Some shortcuts were taken due to lack
+of PHP/backend on my website. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
