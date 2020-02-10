@@ -34,22 +34,22 @@ const NonPlayerCharList = ({ npcs }) => {
         </div>
         <div className="NonPlayerCharList__header__info">
           <div className="NonPlayerCharList__header__info__level">
-            <SortLink column={ SortColumn.SORT_LEVEL }>CR<span>&#9662;</span></SortLink>
+            <SortLink customClass="sort-link" column={ SortColumn.SORT_LEVEL }>CR<span>&#9662;</span></SortLink>
           </div>
           <div className="NonPlayerCharList__header__info__name">
-            <SortLink column={ SortColumn.SORT_NAME }>Name<span>&#9662;</span></SortLink>
+            <SortLink customClass="sort-link" column={ SortColumn.SORT_NAME }>Name<span>&#9662;</span></SortLink>
           </div>
           <div className="NonPlayerCharList__header__info__race">
-            <SortLink column={ SortColumn.SORT_RACE }>Race<span>&#9662;</span></SortLink>
+            <SortLink customClass="sort-link" column={ SortColumn.SORT_RACE }>Race<span>&#9662;</span></SortLink>
           </div>
           <div className="NonPlayerCharList__header__info__alignment">
-            <SortLink column={ SortColumn.SORT_ALIGNMENT }>Alignment<span>&#9662;</span></SortLink>
+            <SortLink customClass="sort-link" column={ SortColumn.SORT_ALIGNMENT }>Alignment<span>&#9662;</span></SortLink>
           </div>
           <div className="NonPlayerCharList__header__info__standing">
-            <SortLink column={ SortColumn.SORT_STANDING }>Standing<span>&#9662;</span></SortLink>
+            <SortLink customClass="sort-link" column={ SortColumn.SORT_STANDING }>Standing<span>&#9662;</span></SortLink>
           </div>
           <div className="NonPlayerCharList__header__info__location">
-            <SortLink column={ SortColumn.SORT_LOCATION }>Location<span>&#9662;</span></SortLink>
+            <SortLink customClass="sort-link" column={ SortColumn.SORT_LOCATION }>Location<span>&#9662;</span></SortLink>
           </div>
         </div>
       </div>

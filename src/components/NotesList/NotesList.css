@@ -1,0 +1,10 @@
+#notes_list {
+    margin-top: 1em;
+    color: #DBC7C7;
+}
+
+.notes_list__note_info {
+  background: #111;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}

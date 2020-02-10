@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { setSortColumn } from '../../store/modules/npcs/actions';
 import Link from '../../components/Link/Link';
+import './SortLink.css';
 
 const mapStateToProps = (state, ownProps) => ({
   active: ownProps.column === state.sortColumn

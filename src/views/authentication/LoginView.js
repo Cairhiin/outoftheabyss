@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/LoginForm/LoginForm';
-import { login } from '../api/loginApi';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import { login } from '../../api/loginApi';
 import { push } from 'connected-react-router'
 import { connect } from 'react-redux';
-import { logUser } from '../store/modules/auth/actions';
+import { logUser } from '../../store/modules/auth/actions';
 
 const mapStateToProps = (state) => ({
   ...state

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { logoutUser } from '../store/modules/auth/actions';
+import { logoutUser } from '../../store/modules/auth/actions';
 
 const mapDispatchToProps = dispatch => {
   return {

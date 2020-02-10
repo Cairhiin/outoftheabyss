@@ -4,10 +4,11 @@ import { Switch, Route, Link } from "react-router-dom";
 import Logbook from '../views/LogbookView';
 import Characters from '../views/CharactersView';
 import NPCs from '../views/NPCView';
-import Login from '../views/LoginView';
-import Logout from '../views/LogoutView';
-import Register from '../views/RegisterView';
+import Login from '../views/authentication/LoginView';
+import Logout from '../views/authentication/LogoutView';
+import Register from '../views/authentication/RegisterView';
 import Dashboard from '../views/DashboardView';
+import EditCharacter from '../views/character/EditCharView';
 import { getUsername, getIsLoggedIn } from '../store/modules/auth/reducers';
 import { connect } from 'react-redux';
 import { logUser } from '../store/modules/auth/actions';
@@ -62,7 +63,7 @@ class CoreLayout extends Component {
             </Container>
           </Navbar>
         </Container>
-        <Container>
+        <Container id="main">
           <Switch>
             <Route exact path="/">
               <Logbook />
@@ -85,6 +86,7 @@ class CoreLayout extends Component {
             <Route path="/dashboard">
               <Dashboard />
             </Route>
+            <Route path="/edit-character/:charId" component={ EditCharacter } />
             <Route render={() => (<div> Sorry, this page does not exist. </div>)} />
           </Switch>
         </Container>

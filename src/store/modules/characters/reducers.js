@@ -20,6 +20,16 @@ export default function logbook(state = INITIAL_STATE, action) {
         draft.error = action.error;
         draft.pending = false;
         break;
+      case "@characters/DELETE_CHARACTER":
+        // Filter out the character with the deleted _id
+        draft.charList = draft.charList.filter(char => char._id !== action._id.result[0]);
+        draft.pending = false;
+        break;
+      case "@characters/EDIT_CHARACTER":
+      const char = action.character;
+        draft.charList = draft.charList[char._id] = char;
+        draft.pending = false;
+        break;
       default:
     }
   });

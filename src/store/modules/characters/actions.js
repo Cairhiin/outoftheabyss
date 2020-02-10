@@ -17,3 +17,17 @@ export function loadCharactersFailure(error) {
     error: error
   }
 }
+
+export function editCharacter(character) {
+  return {
+    type: "@characters/EDIT_CHARACTER",
+    character: character
+  };
+}
+
+export function deleteCharacter(_id) {
+  return {
+    type: "@characters/DELETE_CHARACTER",
+    _id
+  };
+}

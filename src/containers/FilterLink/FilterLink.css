@@ -12,3 +12,8 @@
 .filter-link:hover {
   background: #C49191;
 }
+
+.filter-link.active-link {
+  background: #C49191;
+  cursor: default;
+}

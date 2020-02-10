@@ -1,12 +1,12 @@
 import React  from 'react';
 import { Col, Row, Spinner } from 'react-bootstrap';
-import Logbook from '../components/Logbook/Logbook';
-import Character from '../components/Character/Character';
 import { connect } from 'react-redux';
 import { getLogs, getLogsPending, getLogsError } from '../store/modules/logbook/reducers';
 import { getUsername } from '../store/modules/auth/reducers';
 import { getCharacters, getCharactersPending, getCharactersError }
     from '../store/modules/characters/reducers';
+import CharList from '../components/CharList/CharList';
+import NotesList from '../components/NotesList/NotesList';
 
 const mapStateToProps = (state) => ({
   logs: getLogs(state),
@@ -22,11 +22,11 @@ const DashboardView = ({ logs, logIsLoading, logError,
   user, characters, characterIsLoading, characterError }) => {
 
   // filter the users to only include logs written by logged in user
-  let logsByUser = logs.filter(log => log.writer === user);
-  let charactersByUser = logs.filter(character => character.name === user);
+  let logsByUser = user === 'admin' ? logs : logs.filter(log => log.writer === user);
+  let charactersByUser = user === 'admin' ? characters : characters.filter(character => character.user === user);
 
   function shouldComponentRender() {
-    if (logIsLoading === false) return true;
+    if (logIsLoading === false && characterIsLoading === false) return true;
     return false;
   }
 
@@ -44,15 +44,14 @@ const DashboardView = ({ logs, logIsLoading, logError,
     );
   }
 
-  // Temp - needs implementation of LogList and CharacterList containers
   return (
     <Row>
       <Col md={12}>
         <main>
-          { (!characterError && charactersByUser.length > 0) ? <Character character = { charactersByUser } /> :
+          { (!characterError && charactersByUser.length > 0) ? <CharList characters = { charactersByUser } /> :
             <div>{ characterError }</div>
           }
-          { !logError ? <Logbook data={ logsByUser } /> :
+          { !logError ? <NotesList notes={ logsByUser } /> :
               <div>{ logError }</div>
           }
         </main>

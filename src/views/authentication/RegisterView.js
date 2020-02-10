@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import RegisterForm from '../components/RegisterForm/RegisterForm';
-import { register } from '../api/loginApi';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import { register } from '../../api/loginApi';
 import { push } from 'connected-react-router'
 import { connect } from 'react-redux';
 
