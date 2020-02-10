@@ -22,6 +22,8 @@
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "serialize-javascript": "2.1.1",
+    "set-value": "2.0.1",
     "typeface-abel": "^0.0.72",
     "typeface-homenaje": "^0.0.72",
     "typeface-vollkorn": "^0.0.72",
