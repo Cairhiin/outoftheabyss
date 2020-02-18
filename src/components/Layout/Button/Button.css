@@ -1,0 +1,14 @@
+button.default {
+  min-width: 75px;
+  margin-right: 0.5em;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4em;
+  font-weight: bold;
+  background: var(--default-button-bg);
+  color: var(--default-button-color);
+}
+
+.button.default:hover {
+  background: var(--default-button-bg-highlight);
+}

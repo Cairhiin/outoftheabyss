@@ -24,9 +24,9 @@ aside, main {
 **/
 :root {
   --main-bg-color: #1C1919;
-  --highlight-bg-color: #5E3232;
+  --highlight-bg-color: #8E3E3E;
   --main-text-color: #DBC7C7;
-  --dark-text-color: #8E6C6C;
+  --dark-text-color: #191515;
   --default-button-color: #222;
   --default-button-bg: #DBC7C7;
   --default-button-bg-highlight: #C49191;
