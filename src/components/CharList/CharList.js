@@ -18,15 +18,19 @@ const CharList = ({ characters }) => {
     const { _id, charName, race, level, charClass } = character;
     return (
       <div key={ _id } className="charlist__char_info">
-        <div className="charlist__char_info__header">
-          { charName }
-        </div>
-        <div className="charlist__char_info__content">
-          { race[0].raceName } level { level } { charClass }
-        </div>
-        <div className="charlist__char_info__buttons">
-          <Button to={ `/edit-character/${ _id }`} as={ Link }>Edit</Button>
-          <Button onClick={ () => handleShow(_id) }>Delete</Button>
+        <div key={ _id } className="charlist__char_info__background">
+          <div className="charlist__char_info__header">
+            <h4>
+              { charName }
+            </h4>
+          </div>
+          <div className="charlist__char_info__content">
+            { race[0].raceName } level { level } { charClass }
+          </div>
+          <div className="charlist__char_info__buttons">
+            <Link to={ `/edit-character/${ _id }`}><button>Edit</button></Link>
+            <button onClick={ () => handleShow(_id) }>Delete</button>
+          </div>
         </div>
       </div>
     );

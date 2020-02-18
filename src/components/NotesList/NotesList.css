@@ -1,10 +1,48 @@
 #notes_list {
     margin-top: 1em;
-    color: #DBC7C7;
+    color: var(--main-text-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .notes_list__note_info {
-  background: #111;
+  border-radius: 10px;
+  margin: 0 0 1em 0;
+  flex: 32% 0 1;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3) inset;
+}
+
+.notes_list__note_info__background {
+  background: var(--highlight-bg-color);
+  border-radius: 10px;
+}
+
+.notes_list__note_info__header, .notes_list__note_info__content, .notes_list__note_info__date  {
   padding: 0.5em;
-  margin-bottom: 1em;
+}
+
+.notes_list__note_info__content, .notes_list__note_info__date, .notes_list__note_info {
+  background: var(--main-bg-color);
+}
+
+.notes_list__note_info__header {
+    min-height: 85px;
+}
+
+.notes_list__note_info__header h4 {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--main-text-color);
+  text-transform: uppercase;
+}
+
+.notes_list__note_info__header span {
+  text-transform: none;
+  font-size: 0.9rem;
+  color: var(--dark-text-color);
 }

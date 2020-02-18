@@ -109,6 +109,7 @@ const formatDate = function(date) {
     default:
     break;
   }
+  
   return newDate.getDate() + " " + month;
 }
 

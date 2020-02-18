@@ -1,8 +1,8 @@
 .filter-link {
-  background: #DBC7C7;
+  background: var(--default-button-bg);
   border-radius: 4px;
   padding: 5px;
-  color: #222;
+  color: var(--default-button-color);
   margin-right: 10px;
   text-align: center;
   font-weight: bold;
@@ -10,10 +10,10 @@
 }
 
 .filter-link:hover {
-  background: #C49191;
+  background: var(--default-button-bg-highlight);
 }
 
 .filter-link.active-link {
-  background: #C49191;
+  background: var(--default-button-bg-highlight);
   cursor: default;
 }

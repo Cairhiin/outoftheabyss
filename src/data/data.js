@@ -40,9 +40,40 @@ const BACKGROUNDS = [
   { name: "Urchin", skills: ["Sleight of Hand", "Stealth"] }
 ];
 
+const SKILLS = [
+    { name: "Athletics", type: "Strength", id: "athletics" },
+    { name: "Acrobatics", type: "Dexterity", id: "acrobatics" },
+    { name: "Sleight of Hand", type: "Dexterity", id: "sleightofhand" },
+    { name: "Stealth", type: "Dexterity", id: "stealth" },
+    { name: "Arcana", type: "Intelligence", id: "arcana" },
+    { name: "History", type: "Intelligence", id: "history" },
+    { name: "Investigation", type: "Intelligence", id: "investigation" },
+    { name: "Nature", type: "Intelligence", id: "nature" },
+    { name: "Religion", type: "Intelligence", id: "religion" },
+    { name: "Animal Handling", type: "Wisdom", id: "animalhandling" },
+    { name: "Insight", type: "Wisdom", id: "insight" },
+    { name: "Medicine", type: "Wisdom", id: "medicine" },
+    { name: "Perception", type: "Wisdom", id: "perception" },
+    { name: "Survival", type: "Wisdom", id: "survival" },
+    { name: "Deception", type: "Charisma", id: "deception" },
+    { name: "Intimidation", type: "Charisma", id: "intimidation" },
+    { name: "Performance", type: "Charisma", id: "performance" },
+    { name: "Persuasion", type: "Charisma", id: "persuasion" }
+];
+
+const ATTRIBUTES = [
+  { name: "Strength", short: "STR" },
+  { name: "Dexterity", short: "DEX" },
+  { name: "Constitution", short: "CON" },
+  { name: "Intelligence", short: "INT" },
+  { name: "Wisdom", short: "WIS" },
+  { name: "Charisma", short: "CHA" },
+]
 export {
   RACES,
   CLASSES,
   DEITIES,
-  BACKGROUNDS
+  BACKGROUNDS,
+  SKILLS,
+  ATTRIBUTES
 };

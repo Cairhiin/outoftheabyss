@@ -18,6 +18,20 @@ aside, main {
   cursor: pointer;
 }
 
+
+/**
+  Variables
+**/
+:root {
+  --main-bg-color: #1C1919;
+  --highlight-bg-color: #5E3232;
+  --main-text-color: #DBC7C7;
+  --dark-text-color: #8E6C6C;
+  --default-button-color: #222;
+  --default-button-bg: #DBC7C7;
+  --default-button-bg-highlight: #C49191;
+}
+
 /**
   Overriding Bootstrap classes
 **/
@@ -26,7 +40,9 @@ aside, main {
   padding: 0;
 }
 
-/* Modal */
+/**
+  Modal
+**/
 .modal .modal-content {
   background: #111;
 }
@@ -53,7 +69,9 @@ aside, main {
   border-top: none;
 }
 
-/* Navigation */
+/**
+  Navigation
+**/
 .navbar {
   font-family: 'Abel';
   background: #5E3232;
