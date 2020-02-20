@@ -109,7 +109,7 @@ const DashboardView = ({ logs, logIsLoading, logError,
           <Modal.Title>Deleting cannot be undone, are you certain you want to delete this character?</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
-          <Button variant="secondary" onClick={ handleClose }>
+          <Button onClick={ handleClose }>
             Cancel
           </Button>
           <DeleteButton _id={ _id } onClick={ handleClose }>Delete</DeleteButton>

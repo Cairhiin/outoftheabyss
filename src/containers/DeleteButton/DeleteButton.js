@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Button from 'react-bootstrap/Button';
+import { Button } from '../../components/Layout/Layout';
 import { deleteCharacterFromDB } from '../../api/api';
 import './DeleteButton.css';
 
