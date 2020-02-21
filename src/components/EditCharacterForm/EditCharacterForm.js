@@ -2,7 +2,15 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Form, Col, Button, Container, Row } from 'react-bootstrap'
 import * as yup from 'yup';
-import { CLASSES, RACES, DEITIES, BACKGROUNDS, SKILLS, ATTRIBUTES } from '../../data/data';
+import {
+  CLASSES,
+  RACES,
+  DEITIES,
+  BACKGROUNDS,
+  SKILLS,
+  ATTRIBUTES,
+  ALIGNMENT
+} from '../../data/data';
 import './EditCharacterForm.css';
 
 const schema = yup.object({
@@ -16,10 +24,22 @@ const schema = yup.object({
   charisma: yup.number().min(1).max(20),
 });
 
+const calculateHP = (selectedClass, level, con) => {
+  return selectedClass.hitdie + (Math.round(selectedClass.hitdie / 2) + 1)
+    * (level - 1)
+    + Math.floor((con - 10) / 2) * level
+};
+
 const EditCharacterForm = ({ character, onSubmit }) => {
   let selectedClass = CLASSES.filter(charClass => charClass.name === character.charClass)[0];
-  const skills = SKILLS.map(skill => character[skill.id]);
-
+  const {
+    charName, level, hp, charClass, alignment, deity, archetype,
+    background, race,
+    strength, dexterity, constitution, intelligence, wisdom, charisma,
+    athletics, acrobatics, sleightofhand, stealth, arcana, history, investigation,
+    nature, religion, animalhandling, insight, medicine, perception, survival,
+    deception, intimidation, performance, persuasion
+  } = character;
   return (
     <Container>
       <Row>
@@ -30,39 +50,39 @@ const EditCharacterForm = ({ character, onSubmit }) => {
           <h2>Edit Character Form</h2>
           <Formik
             initialValues = {{
-              name: character.charName,
-              level: character.level,
-              hp: character.hp,
-              background: character.background[0].bgName,
-              race: character.race[0].raceName,
-              charClass: character.charClass,
-              deity: character.deity,
-              archetype: character.archetype,
-              strength: character.strength,
-              dexterity: character.dexterity,
-              constitution: character.constitution,
-              intelligence: character.intelligence,
-              wisdom: character.wisdom,
-              charisma: character.charisma,
-              athletics: character.athletics,
-              acrobatics: character.acrobatics,
-              sleightofhand: character.sleightofhand,
-              stealth: character.stealth,
-              arcana: character.arcana,
-              history: character.history,
-              investigation: character.investigation,
-              nature: character.nature,
-              religion: character.religion,
-              animalhandling: character.animalhandling,
-              insight: character.insight,
-              medicine: character.medicine,
-              perception: character.perception,
-              survival: character.survival,
-              deception: character.deception,
-              intimidation: character.intimidation,
-              performance: character.performance,
-              persuasion: character.persuasion,
-              skills: skills
+              name: charName,
+              level: level,
+              hp: hp,
+              background: background,
+              race: race,
+              charClass: charClass,
+              alignment: alignment,
+              deity: deity,
+              archetype: archetype,
+              strength: strength,
+              dexterity: dexterity,
+              constitution: constitution,
+              intelligence: intelligence,
+              wisdom: wisdom,
+              charisma: charisma,
+              athletics: athletics,
+              acrobatics: acrobatics,
+              sleightofhand: sleightofhand,
+              stealth: stealth,
+              arcana: arcana,
+              history: history,
+              investigation: investigation,
+              nature: nature,
+              religion: religion,
+              animalhandling: animalhandling,
+              insight: insight,
+              medicine: medicine,
+              perception: perception,
+              survival: survival,
+              deception: deception,
+              intimidation: intimidation,
+              performance: performance,
+              persuasion: persuasion
             }}
             validationSchema={ schema }
             onSubmit={ values => onSubmit(values) }
@@ -138,7 +158,7 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                       onChange={ (e) => {
                           handleChange(e);
                           // reset the assigned hp value so it can be updated
-                          setFieldValue('hp', '');
+                          setFieldValue('hp', null);
                         }}
                       onBlur={ handleBlur }
                       isInvalid={ touched.level && errors.level }
@@ -154,17 +174,15 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                   <Form.Group as={ Col } md="9" controlId="validationFormikClass">
                     <Form.Label>Class</Form.Label>
                       <Form.Control
-                        value = { values.charClass }
+                        value={ values.charClass }
                         as="select"
                         name="charClass"
                         onChange={ (e) => {
                             handleChange(e);
                             selectedClass = CLASSES.filter(charClass => charClass.name === e.target.value)[0];
-                            // reset the assigned hp value so it can be updated
-                            setFieldValue('hp', '');
+                            // recalculate character's default HP based on new Class
+                            setFieldValue('hp', calculateHP(selectedClass, values.level, values.constitution));
                           }}
-                        onBlur={ handleBlur }
-                        isInvalid={ touched.class && errors.class }
                       >
                       { CLASSES.map((charClass, key) => {
                           return (
@@ -174,33 +192,20 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                           );
                       })}
                       </Form.Control>
-                      <Form.Control.Feedback type="invalid">
-                        { errors.charClass }
-                      </Form.Control.Feedback>
                     </Form.Group>
 
                     { /* Character HP */ }
                     <Form.Group as={ Col } md="3" controlId="validationFormikHP">
                       <Form.Label>Hitpoints</Form.Label>
                       <Form.Control
-
-                        value={
-                          values.hp ||
-                          selectedClass.hitdie + (Math.round(selectedClass.hitdie / 2) + 1)
-                            * (values.level - 1)
-                            + Math.floor((values.constitution - 10) / 2) * values.level
-                          }
-                        type="text"
+                        value={ values.hp }
+                        type="number"
                         name="hp"
                         onChange={ (e) => {
                             handleChange(e);
                           }}
                         onBlur={ handleBlur }
-                        isInvalid={ touched.hp && errors.hp }
                       />
-                      <Form.Control.Feedback type="invalid">
-                        { errors.hp }
-                      </Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
 
@@ -209,15 +214,18 @@ const EditCharacterForm = ({ character, onSubmit }) => {
 
                     { ATTRIBUTES.map(({ name, short }) => {
                       return (
-                          <Form.Group as={ Col } md="2" className="no-gutters" controlId={ `validationFormik${ name }` } key={ name }>
+                          <Form.Group as={ Col } md="4" className="no-gutters" controlId={ `validationFormik${ name }` } key={ name }>
                             <Form.Label>{ short }</Form.Label>
                             <Form.Control
                               value = { values[name.toLowerCase()] }
-                              type="text"
-                              placeholder="10"
-                              name={ name }
+                              type="number"
+                              name={ name.toLowerCase() }
                               onChange={ (e) => {
                                   handleChange(e);
+                                  if (e.target.name === 'constitution') {
+                                    // Update the character's HP based on changed CON score
+                                    setFieldValue('hp', calculateHP(selectedClass, values.level, e.target.value));
+                                  }
                                 }}
                               onBlur={ handleBlur }
                               isInvalid={ touched[name.toLowerCase()] && errors[name.toLowerCase()] }
@@ -233,35 +241,31 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                 <Form.Row>
 
                   { /* Character Background */ }
-                  <Form.Group as={ Col } md="6" controlId="validationFormikBackground">
+                  <Form.Group as={ Col } md="12" controlId="validationFormikBackground">
                     <Form.Label>Background</Form.Label>
                       <Form.Control
                         value = { values.background }
                         as="select"
-                        name="archetype"
-                        onChange={ (e) => {
-                            handleChange(e);
-                          }}
+                        name="background"
+                        onChange={ handleChange }
                         onBlur={ handleBlur }
-                        isInvalid={ touched.background && errors.background }
                       >
                       {
                         BACKGROUNDS.map((background, key) => {
                           return (
-                            <option key={ key }>
+                            <option value={ background.name } key={ key }>
                               { background.name }
-                              </option>
-                            );
+                            </option>
+                          );
                         })
                       }
                       </Form.Control>
-                      <Form.Control.Feedback type="invalid">
-                        { errors.background }
-                      </Form.Control.Feedback>
                   </Form.Group>
+                </Form.Row>
 
+                <Form.Row>
                   { /* Character Deity */ }
-                  <Form.Group as={ Col } md="6" controlId="validationFormikDeity">
+                  <Form.Group as={ Col } md="12" controlId="validationFormikDeity">
                     <Form.Label>Deity</Form.Label>
                       <Form.Control
                         value = { values.deity }
@@ -271,21 +275,17 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                             handleChange(e);
                           }}
                         onBlur={ handleBlur }
-                        isInvalid={ touched.deity && errors.deity }
                       >
                       {
                         DEITIES.map((deity, key) => {
                           return (
-                            <option key={ key }>
+                            <option value={ deity } key={ key }>
                               { deity }
                               </option>
                             );
                         })
                       }
                       </Form.Control>
-                      <Form.Control.Feedback type="invalid">
-                        { errors.deity }
-                      </Form.Control.Feedback>
                   </Form.Group>
                 </Form.Row>
 
@@ -307,7 +307,7 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                         {
                           selectedClass.archetypes.map((archetype, key) => {
                             return (
-                              <option key={ key }>
+                              <option value={ archetype } key={ key }>
                                 { archetype }
                                 </option>
                               );
@@ -321,7 +321,47 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                   </Form.Row>
                 }
 
+                <Form.Row>
+                  { /* Character Alignment */ }
+                  <Form.Group as={ Col } md="12" controlId="validationFormikAlignment">
+                    <Form.Label>Alignment</Form.Label>
+                      <Form.Control
+                        value = { values.alignment }
+                        as="select"
+                        name="alignment"
+                        onChange={ (e) => {
+                            handleChange(e);
+                          }}
+                        onBlur={ handleBlur }
+                      >
+                      {
+                        ALIGNMENT.map((alignment, key) => {
+                          return (
+                            <option value={ alignment } key={ key }>
+                              { alignment }
+                              </option>
+                            );
+                        })
+                      }
+                      </Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        { errors.archetype }
+                      </Form.Control.Feedback>
+                  </Form.Group>
+                </Form.Row>
+
                   { /* Character Skills */ }
+                  <Form.Row className="skill__table__header">
+                    <Col md="6">
+                      <Form.Label>Skills</Form.Label>
+                    </Col>
+                    <Col md="3">
+                      <Form.Label className="centered">Proficiency</Form.Label>
+                    </Col>
+                    <Col md="3">
+                      <Form.Label className="centered">Expertise</Form.Label>
+                    </Col>
+                  </Form.Row>
                   <Form.Group controlId="validationFormikSkills">
                     { SKILLS.map(({ name, id }, key) => {
                       return (
@@ -329,20 +369,20 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                           <Col md="6">
                             <Form.Label>{ name }</Form.Label>
                           </Col>
-                          <Col md="3">
+                          <Col md="3" className="centered">
                             <Form.Check
-                              checked={ values.skills[key] === 1 }
+                              checked={ values[id] === 1 }
                               type="radio"
                               id={ id }
-                              onChange={ () => setFieldValue(`skills[${key}]`, 1) }
+                              onChange={ () => setFieldValue(id, 1) }
                             />
                           </Col>
-                          <Col md="3">
+                          <Col md="3" className="centered">
                             <Form.Check
-                              checked={ values.skills[key] === 2 }
+                              checked={ values[id] === 2 }
                               type="radio"
                               id={ `${ id }-expertise` }
-                              onChange={ () => setFieldValue(`skills[${key}]`, 2) }
+                              onChange={ () => setFieldValue(id, 2) }
                             />
                           </Col>
                         </Form.Row>

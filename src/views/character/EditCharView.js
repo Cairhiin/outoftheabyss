@@ -3,6 +3,7 @@ import { push } from 'connected-react-router'
 import { connect } from 'react-redux';
 import { getCharacters } from '../../store/modules/characters/reducers';
 import { editCharacter } from '../../store/modules/characters/actions';
+import { updateCharacterInDB } from '../../api/api';
 import EditCharacterForm from '../../components/EditCharacterForm/EditCharacterForm';
 
 const mapStateToProps = (state) => ({
@@ -33,11 +34,12 @@ class EditCharView extends Component {
     if (this._isMounted) this.setState({ character: character[0] });
   }
 
-  async updateCharacter(data) {
-    if (this._isMounted) this.setState({ hasError: false });
-
-
-    if (this._isMounted) this.setState({ hasError: true });
+  async updateCharacter(character) {
+    if (this._isMounted) {
+      console.log(character);
+      await updateCharacterInDB(character);
+      editCharacter(character);
+    }
   }
 
   componentWillUnmount() {
@@ -48,7 +50,10 @@ class EditCharView extends Component {
     return (
       <div>
         { this.state.character ?
-            <EditCharacterForm character={ this.state.character }/>
+            <EditCharacterForm
+              character={ this.state.character }
+              onSubmit={ this.updateCharacter }
+            />
           :
             <div>No character to edit</div>
         }

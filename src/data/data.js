@@ -68,12 +68,20 @@ const ATTRIBUTES = [
   { name: "Intelligence", short: "INT" },
   { name: "Wisdom", short: "WIS" },
   { name: "Charisma", short: "CHA" },
-]
+];
+
+const ALIGNMENT = [
+    "Lawful Good", "Neutral Good", "Chaotic Good",
+    "Lawful Neutral", "True Neutral", "Chaotic Neutral",
+    "Lawful Evil", "Neutral Evil", "Chaotic Evil"
+];
+
 export {
   RACES,
   CLASSES,
   DEITIES,
   BACKGROUNDS,
   SKILLS,
-  ATTRIBUTES
+  ATTRIBUTES,
+  ALIGNMENT
 };

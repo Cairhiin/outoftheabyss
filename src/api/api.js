@@ -82,6 +82,7 @@ function loadAllNPCs() {
 
 function updateCharacterInDB(character) {
   return dispatch => {
+    dispatch(loadCharactersPending());
     fetch(process.env.REACT_APP_DB_HOST + 'rest/characters/' + character._id, {
       method: 'PUT',
       headers: {
@@ -123,7 +124,7 @@ function deleteCharacterFromDB(id) {
         dispatch(deleteCharacter(res));
     })
     .catch(error => {
-        console.info("ERR: ", error);
+        dispatch(loadCharactersFailure(error));
     });
   }
 }
