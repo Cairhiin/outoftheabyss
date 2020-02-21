@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { push } from 'connected-react-router'
 import { connect } from 'react-redux';
 import { getCharacters } from '../../store/modules/characters/reducers';
-import { editCharacter } from '../../store/modules/characters/actions';
 import { updateCharacterInDB } from '../../api/api';
+import { editCharacter } from '../../store/modules/characters/actions';
 import EditCharacterForm from '../../components/EditCharacterForm/EditCharacterForm';
 
 const mapStateToProps = (state) => ({
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-      editCharacter: character => dispatch(editCharacter(character)).then(dispatch(push('/dashboard')))
+      editCharacter: character => dispatch(editCharacter(character)).then(dispatch(push('/characters')))
   }
 }
 
@@ -36,9 +36,8 @@ class EditCharView extends Component {
 
   async updateCharacter(character) {
     if (this._isMounted) {
-      console.log(character);
       await updateCharacterInDB(character);
-      editCharacter(character);
+      this.props.editCharacter(character);
     }
   }
 

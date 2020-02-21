@@ -26,8 +26,9 @@ export default function logbook(state = INITIAL_STATE, action) {
         draft.pending = false;
         break;
       case "@characters/EDIT_CHARACTER":
-      const char = action.character;
-        draft.charList = draft.charList[char._id] = char;
+      const { character } = action;
+      console.log(character)
+        draft.charList = draft.charList.map(char => char._id !== character._id ? char : character);
         draft.pending = false;
         break;
       default:

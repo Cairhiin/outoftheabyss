@@ -3,10 +3,10 @@ import {
   loadCharactersPending,
   loadCharactersSuccess,
   loadCharactersFailure,
-  deleteCharacter,
-  editCharacter
+  deleteCharacter
 } from '../store/modules/characters/actions';
 import { loadNPCsPending, loadNPCsSuccess, loadNPCsFailure } from '../store/modules/npcs/actions';
+import request from 'request-promise-native';
 
 function loadAllCharacters() {
   return dispatch => {
@@ -81,29 +81,21 @@ function loadAllNPCs() {
 }
 
 function updateCharacterInDB(character) {
-  return dispatch => {
-    dispatch(loadCharactersPending());
-    fetch(process.env.REACT_APP_DB_HOST + 'rest/characters/' + character._id, {
-      method: 'PUT',
-      headers: {
-        "content-type": "application/json",
-        "x-apikey": process.env.REACT_APP_API_KEY,
-        "cache-control": "no-cache"
-      },
-      body: character,
-      json: true
-    })
-    .then(res => res.json())
-    .then(res => {
-        if(res.error) {
-            throw(res.error);
-        }
-        dispatch(editCharacter(res));
-    })
-    .catch(error => {
-        console.info("ERR: ", error);
-    });
+  let options = {
+    method: 'POST',
+    url: process.env.REACT_APP_DB_HOST + 'rest/characters/' + character._id,
+    headers: {
+      "content-type": "application/json",
+      "x-apikey": process.env.REACT_APP_API_KEY,
+      "cache-control": "no-cache",
+    },
+    body: character,
+    json: true
   }
+
+  return request(options)
+    .then(res => res._id)
+    .catch(() => false);
 }
 
 function deleteCharacterFromDB(id) {
@@ -124,7 +116,7 @@ function deleteCharacterFromDB(id) {
         dispatch(deleteCharacter(res));
     })
     .catch(error => {
-        dispatch(loadCharactersFailure(error));
+        console.info("ERR: ", error);
     });
   }
 }

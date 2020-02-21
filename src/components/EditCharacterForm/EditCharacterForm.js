@@ -14,14 +14,14 @@ import {
 import './EditCharacterForm.css';
 
 const schema = yup.object({
-  name: yup.string().required(),
+  charName: yup.string().required(),
   race: yup.string().required(),
   strength: yup.number().min(1).max(25),
   dexterity: yup.number().min(1).max(20),
   constitution: yup.number().min(1).max(25),
   intelligence: yup.number().min(1).max(20),
   wisdom: yup.number().min(1).max(20),
-  charisma: yup.number().min(1).max(20),
+  charisma: yup.number().min(1).max(20)
 });
 
 const calculateHP = (selectedClass, level, con) => {
@@ -33,13 +33,14 @@ const calculateHP = (selectedClass, level, con) => {
 const EditCharacterForm = ({ character, onSubmit }) => {
   let selectedClass = CLASSES.filter(charClass => charClass.name === character.charClass)[0];
   const {
-    charName, level, hp, charClass, alignment, deity, archetype,
-    background, race,
+    _id, charName, level, hp, charClass, alignment, deity, archetype,
+    background, race, armour, weapons,
     strength, dexterity, constitution, intelligence, wisdom, charisma,
     athletics, acrobatics, sleightofhand, stealth, arcana, history, investigation,
     nature, religion, animalhandling, insight, medicine, perception, survival,
     deception, intimidation, performance, persuasion
   } = character;
+
   return (
     <Container>
       <Row>
@@ -50,7 +51,8 @@ const EditCharacterForm = ({ character, onSubmit }) => {
           <h2>Edit Character Form</h2>
           <Formik
             initialValues = {{
-              name: charName,
+              _id: _id,
+              charName: charName,
               level: level,
               hp: hp,
               background: background,
@@ -82,7 +84,9 @@ const EditCharacterForm = ({ character, onSubmit }) => {
               deception: deception,
               intimidation: intimidation,
               performance: performance,
-              persuasion: persuasion
+              persuasion: persuasion,
+              armour: armour,
+              weapons: weapons
             }}
             validationSchema={ schema }
             onSubmit={ values => onSubmit(values) }
@@ -104,18 +108,18 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                   <Form.Group as={ Col } md="12" controlId="validationFormikName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
-                      value = { values.name }
+                      value={ values.charName }
                       type="text"
                       placeholder="Name"
-                      name="name"
+                      name="charName"
                       onChange={ (e) => {
                           handleChange(e);
                         }}
                       onBlur={ handleBlur }
-                      isInvalid={ touched.name && errors.name }
+                      isInvalid={ touched.charName && errors.charName }
                     />
                     <Form.Control.Feedback type="invalid">
-                      { errors.name }
+                      { errors.charName }
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Form.Row>
@@ -152,13 +156,13 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                     <Form.Label>Level</Form.Label>
                     <Form.Control
                       value = { values.level }
-                      type="text"
+                      type="number"
                       placeholder="Level"
                       name="level"
                       onChange={ (e) => {
                           handleChange(e);
                           // reset the assigned hp value so it can be updated
-                          setFieldValue('hp', null);
+                          setFieldValue('hp', calculateHP(selectedClass, e.target.value, values.constitution));
                         }}
                       onBlur={ handleBlur }
                       isInvalid={ touched.level && errors.level }

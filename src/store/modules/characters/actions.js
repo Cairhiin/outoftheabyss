@@ -21,7 +21,7 @@ export function loadCharactersFailure(error) {
 export function editCharacter(character) {
   return {
     type: "@characters/EDIT_CHARACTER",
-    character: character
+    character
   };
 }
 
