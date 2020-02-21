@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
   user: getUsername(state),
   characters: getCharacters(state),
   characterIsLoading: getCharactersPending(state),
-  characterError: getCharactersError(state)
+  characterError: getCharactersError(state),
 });
 
 const DashboardView = ({ logs, logIsLoading, logError,
@@ -68,7 +68,7 @@ const DashboardView = ({ logs, logIsLoading, logError,
           <Col md={4} key={_id}>
             <Panel
               header={ charName }
-              content={ `${ race[0].raceName } level ${ level } ${ charClass }` }
+              content={ `${ race } level ${ level } ${ charClass }` }
               footer={ footerJSX }
             />
           </Col>

@@ -36,8 +36,8 @@ const Character = function(props) {
       charClass,
       charName
     } = props.character;
-    const { bgName } = props.character.background[0];
-    const { speed, raceName } = props.character.race[0];
+    const { background } = props.character;
+    const { race } = props.character;
     const { weapons } = props.character;
     const dex = calculateAttrModifiers(character.dexterity);
     const str = calculateAttrModifiers(character.strength);
@@ -92,11 +92,11 @@ const Character = function(props) {
           <div className="display__character__info__header">
             <h3>
               { charName }
-              &nbsp;<span>{ raceName } { charClass } { level }</span>
+              &nbsp;<span>{ race } { charClass } { level }</span>
             </h3>
             <div className="display__character__info__details">
               <div>
-                <span>Background</span><br /> { bgName }
+                <span>Background</span><br /> { background }
               </div>
               <div>
                 <span>Alignment</span><br /> { alignment }
@@ -135,7 +135,8 @@ const Character = function(props) {
                 { dex }
               </div>
               <div>
-                { speed }
+                { //speed
+                }
               </div>
             </div>
           </div>
