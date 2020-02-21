@@ -7,7 +7,7 @@ const Panel = ({
   subheader,
   content,
   footer,
-  customClass,
+  customClass="default",
   styles={ headerHeight: 'inherit' }
 }) => {
   /**

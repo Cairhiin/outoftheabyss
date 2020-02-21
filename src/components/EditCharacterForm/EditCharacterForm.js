@@ -161,7 +161,7 @@ const EditCharacterForm = ({ character, onSubmit }) => {
                       name="level"
                       onChange={ (e) => {
                           handleChange(e);
-                          // reset the assigned hp value so it can be updated
+                          // reset the assigned hp value to default value based on avg HP per level
                           setFieldValue('hp', calculateHP(selectedClass, e.target.value, values.constitution));
                         }}
                       onBlur={ handleBlur }

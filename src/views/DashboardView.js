@@ -98,6 +98,20 @@ const DashboardView = ({ logs, logIsLoading, logError,
 
   return (
     <main>
+      <Row className="extra-bottom-margin">
+        <Col md={3}>
+          <Button variant="dark" size="large" customClass="full-width" dropShadow>New Character</Button>
+        </Col>
+        <Col md={3}>
+          <Button variant="dark" size="large" customClass="full-width" dropShadow>New NPC</Button>
+        </Col>
+        <Col md={3}>
+          <Button variant="dark" size="large" customClass="full-width" dropShadow>New Log</Button>
+        </Col>
+        <Col md={3}>
+          <Button variant="dark" size="large" customClass="full-width" dropShadow>New Equipment</Button>
+        </Col>
+      </Row>
       <Row>
         { characterJSX }
       </Row>
